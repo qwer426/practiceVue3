@@ -1,47 +1,37 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+  import Navbar from './components/Navbar.vue'
+  import Banner from './components/Banner.vue'
+  import Row  from './components/Row.vue'
+  import requests from './request'
 </script>
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+    <Navbar />
+    <Banner />
+    <div v-for="movie of requests" :key="movie.name">
+      <Row :title="movie.title" :fetchUrl="movie.fetchUrl"  />
     </div>
   </header>
-
-  <main>
-    <TheWelcome />
-  </main>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+#app {
+    background-color: #111;
+    width: 100%;
 }
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
+header,
+section {
+    margin-bottom: 20px;
+}
+.container {
+    width: 100%;
+    margin: auto;
+    box-sizing: border-box;
 }
 </style>
